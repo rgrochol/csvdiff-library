@@ -4,8 +4,8 @@ import java.io._
 
 object CsvParser {
   
-  def parse(csv: File) = {
-	scala.io.Source.fromFile(csv).getLines.map(_.split(";"))
+  def parse(csv: File, delimiter: String) = {
+	scala.io.Source.fromFile(csv).getLines.map(_.split(delimiter))
   }
 
 }
