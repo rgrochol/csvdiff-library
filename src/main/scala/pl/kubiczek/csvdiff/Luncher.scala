@@ -1,17 +1,33 @@
 package pl.kubiczek.csvdiff
 
 /**
- * This class is used to lunch the csvdiff framework. Client code should 
- * provide the configuration and execute run() method.
+ * Factory for [[pl.kubiczek.csvdiff.Luncher]] instances.
  */
 object Luncher {
+  /**
+   * Create luncher with a given configuration.
+   * 
+   * @param config the configuration of the csvdiff framework
+   * @return a new Luncher instance 
+   */
+  def apply(config: Configuration) = {
+    val comparator = new CsvComparator(config)
+    val parser = new CsvParser(config)
+    new Luncher(config, comparator, parser)
+  }
+}
 
-  var config = new Configuration()
-  
+/**
+ * This class is used to lunch the csvdiff framework. Client code should 
+ * call run() method.
+ */
+class Luncher(config: Configuration, comparator: CsvComparator, parser: CsvParser) {
+  /**
+   * Runs csvdiff framework.
+   */
   def run() {
-    val actualLines = CsvParser.parse(config.actual, config.delimiter)
-    val expectedLines = CsvParser.parse(config.expected, config.delimiter)
+    val (actualLines, expectedLines) = parser.parse()
+    val result = comparator.compare(actualLines, expectedLines)
     
-    val result = CsvComparator.compare(actualLines.toList.zipWithIndex, expectedLines.toList.zipWithIndex)
   }
 }

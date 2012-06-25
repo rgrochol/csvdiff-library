@@ -2,10 +2,11 @@ package pl.kubiczek.csvdiff
 
 import java.io._
 
-object CsvParser {
+class CsvParser(config: Configuration) {
   
-  def parse(csv: File, delimiter: String) = {
-	scala.io.Source.fromFile(csv).getLines.map(_.split(delimiter))
+  def parse() = {
+	(scala.io.Source.fromFile(config.actualFile).getLines.map(_.split(config.delimiter)),
+	    scala.io.Source.fromFile(config.expectedFile).getLines.map(_.split(config.delimiter)))
   }
 
 }
