@@ -28,4 +28,10 @@ class Configuration {
    * is empty, i.e. each column is involved in comparison.
    */
   val unimportantColumns: Set[Int] = Set()
+  /**
+   * List of column numbers which are a primary key. Only rows with equal primary keys
+   * should be compared. By default the list is empty, i.e. no primary key is defined
+   * and row-by-row algorithm of comparison shall be used.
+   */
+  val keyColumns: List[Int] = List()
 }

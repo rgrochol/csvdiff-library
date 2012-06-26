@@ -22,4 +22,8 @@ class CsvComparator(config: Configuration) {
   
   }
   
+  def compareKeyByKey(actual: Map[List[String], Array[Array[String]]], expected: Map[List[String], Array[Array[String]]]) = {
+    
+  }
+  
 }
