@@ -11,9 +11,8 @@ object Luncher {
    * @return a new Luncher instance 
    */
   def apply(config: Configuration) = {
-    val comparator = new CsvComparator(config)
     val parser = new CsvParser(config)
-    new Luncher(config, comparator, parser)
+    new Luncher(config, parser)
   }
 }
 
@@ -21,16 +20,16 @@ object Luncher {
  * This class is used to lunch the csvdiff framework. Client code should 
  * call run() method.
  */
-class Luncher(config: Configuration, comparator: CsvComparator, parser: CsvParser) {
+class Luncher(config: Configuration, parser: CsvParser) {
   /**
    * Runs csvdiff framework.
    */
   def run() {
-    val (actualLines, expectedLines) = parser.parse()
-    val result = comparator.compare(actualLines, expectedLines)
+    val (actualTable, expectedTable) = parser.parse()
+    //val result = comparator.compare(actualLines, expectedLines)
     
-    val actualMap = indexing(actualLines.toArray)
-    val expectedMap = indexing(expectedLines.toArray)
+    //val actualMap = indexing(actualLines.toArray)
+    //val expectedMap = indexing(expectedLines.toArray)
   }
   
   private def indexing(rows: Array[Array[String]]) = {
