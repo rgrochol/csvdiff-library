@@ -12,26 +12,26 @@ class Configuration {
    * Character used to separate values in CSV files. By default the values are
    * comma-separated.
    */
-  val delimiter = ","
+  var delimiter = ","
   /**
    * Input file in CSV format used for comparison, the file contains
    * actual values.
    */
-  val actualFile = new File("actual.csv")
+  var actualFile = new File("actual.csv")
   /**
    * Input file in CSV format used for comparison, the file contains 
    * expected values.
    */
-  val expectedFile = new File("expected.csv")
+  var expectedFile = new File("expected.csv")
   /**
    * Set of column numbers which are skipped during comparison. By default the set
    * is empty, i.e. each column is involved in comparison.
    */
-  val unimportantColumns: Set[Int] = Set()
+  var unimportantColumns: Set[Int] = Set()
   /**
    * List of column numbers which are a primary key. Only rows with equal primary keys
    * should be compared. By default the list is empty, i.e. no primary key is defined
-   * and row-by-row algorithm of comparison shall be used.
+   * and row-by-row algorithm of comparison shall be applied.
    */
-  val keyColumns: List[Int] = List()
+  var keyColumns: List[Int] = List()
 }

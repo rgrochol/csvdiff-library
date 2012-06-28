@@ -23,22 +23,12 @@ object Luncher {
 class Luncher(config: Configuration, parser: CsvParser) {
   /**
    * Runs csvdiff framework.
+   * 
+   * @return a list of [[pl.kubiczek.csvdiff.DiffResult]] instances representing
+   * differences in compared files
    */
-  def run() {
+  def run() = {
     val (actualTable, expectedTable) = parser.parse()
-    //val result = comparator.compare(actualLines, expectedLines)
-    
-    //val actualMap = indexing(actualLines.toArray)
-    //val expectedMap = indexing(expectedLines.toArray)
+    actualTable.compare(expectedTable)
   }
-  
-  private def indexing(rows: Array[Array[String]]) = {
-    rows.groupBy(x => f(x, config.keyColumns))
-  }
-  
-  private def f(row: Array[String], keys: List[Int]): List[String] =
-    keys match {
-    	case x::xs => row(x)::f(row, xs)
-    	case Nil => Nil
-  	}
 }
