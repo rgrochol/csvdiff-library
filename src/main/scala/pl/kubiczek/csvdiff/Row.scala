@@ -1,6 +1,11 @@
 package pl.kubiczek.csvdiff
 
-
+/**
+ * @param rowNr
+ * @param fields
+ * @param config
+ * 
+ */
 class Row(rowNr: Int, fields: Array[String], config: Configuration) {
 
   def getField(i: Int) = this.fields(i)
